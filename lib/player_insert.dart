@@ -3,47 +3,43 @@ import 'player_manipulator.dart';
 
 class PlayerInserts {
   PlayerInserts();
-  void typePlayerName(PlayerManipulator player){
+
+  void typePlayerName(PlayerManipulator player) {
     String? name;
     do {
-      print('Type player ${player.playerID} name:');
       name = stdin.readLineSync();
-    } while (name == null);
+    } while (name == null || name.isEmpty);
     player.playerName = name;
   }
-  void typePlayerChoice(PlayerManipulator player){
+
+  void typePlayerChoice(PlayerManipulator player) {
     String? choice;
-    do{
-      print('Type player ${player.playerName} choice');
+    do {
       choice = stdin.readLineSync();
-      if (choice == null){
-        print('Your choice cant be NULL!!');
-      }else{
-        choice.toUpperCase();
+      if (choice != null) {
+        choice = choice.toUpperCase();
+        player.playerChoice = choice;
       }
     } while (choice == null || (choice != 'X' && choice != 'O'));
   }
-}
 
-//
-// void initialInfoCollector() {
-//
-//   String? _chooseXorO;
-//   print('Welcome dears players\n');
-//
-//
-//
-//   do {
-//     print('$_name, choose X or O');
-//     _chooseXorO = stdin.readLineSync();
-//   } while (_chooseXorO == null ||
-//       (_chooseXorO.toUpperCase() != 'X' && _chooseXorO.toUpperCase() != 'O'));
-//   _chooseXorO.toUpperCase();
-//   _player1.setPlayer(chooseXorO: _chooseXorO);
-//   do{
-//     print('Type player 2 name:');
-//     _name = stdin.readLineSync();
-//     _player2.setPlayer(playerID: 2, name: _name);
-//   }while(_name == null);
-//
-// }
+  void typePlayerLine(PlayerManipulator player) {
+    String? line;
+    do {
+      print('${player.playerName}, choose line: ');
+      line = stdin.readLineSync();
+      if (line != null && line.isNotEmpty) {
+        player.playerLine = int.parse(line);
+      }
+    } while (line == null || line.isEmpty);
+  }
+
+  void typePlayerColumn(PlayerManipulator player) {
+    String? column;
+    do {
+      print('${player.playerName}, choose column: ');
+      column = stdin.readLineSync();
+      if (column != null) player.playerColumn = int.parse(column);
+    } while (column == null || column.isEmpty);
+  }
+}

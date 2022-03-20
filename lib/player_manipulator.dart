@@ -1,17 +1,19 @@
 class PlayerManipulator {
   PlayerManipulator();
 
-  String _playerName = '';
-  String _playerChoice = '';
+  String? _playerName;
+  String? _playerChoice;
   int _playerScore = 0;
+  int playerLine = 0;
+  int playerColumn = 0;
   static int _playerID = 0;
 
-  set playerName(String playerName) {
+  set playerName(String? playerName) {
     _playerName = playerName;
     _playerID++;
   }
 
-  set playerChoice(String playerChoice) {
+  set playerChoice(String? playerChoice) {
     _playerChoice = playerChoice;
   }
 
@@ -19,11 +21,11 @@ class PlayerManipulator {
     _playerScore = playerScore;
   }
 
-  String get playerName {
+  String? get playerName {
     return _playerName;
   }
 
-  String get playerChoice => _playerChoice;
+  String? get playerChoice => _playerChoice;
 
   int get playerScore => _playerScore;
 
